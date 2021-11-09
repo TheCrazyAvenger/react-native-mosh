@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {PostForm} from './forms';
 
-export const App = () => {
+export const App: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>App</Text>
+      <PostForm />
     </View>
   );
 };
@@ -12,11 +13,6 @@ export const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontFamily: 'Roboto-Bold',
-    fontSize: 30,
+    padding: 15,
   },
 });
