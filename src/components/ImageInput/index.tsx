@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Image, Alert, TouchableWithoutFeedback, View} from 'react-native';
+import React from 'react';
+import {Image, Alert, View, TouchableOpacity} from 'react-native';
 import {ImageInputProps} from '..';
 import {styles} from './styles';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -36,7 +36,7 @@ export const ImageInput: React.FC<ImageInputProps> = ({uri, onChange}) => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={handleImage}>
+    <TouchableOpacity activeOpacity={0.7} onPress={handleImage}>
       <View style={styles.container}>
         {uri ? (
           <Image source={{uri}} style={styles.image} />
@@ -44,6 +44,6 @@ export const ImageInput: React.FC<ImageInputProps> = ({uri, onChange}) => {
           <Icon name="camera" size={40} color={colors.gray} />
         )}
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 };

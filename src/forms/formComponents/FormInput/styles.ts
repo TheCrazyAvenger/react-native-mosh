@@ -1,13 +1,12 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../config';
+import {colors} from '../../../config';
 
 export const styles = StyleSheet.create({
-  submitButton: {
+  textInput: {
+    backgroundColor: colors.light,
+    height: 60,
     borderRadius: 50,
     marginTop: 15,
-  },
-  submitLabel: {
-    fontFamily: 'Roboto-Bold',
-    fontSize: 16,
+    paddingHorizontal: 20,
   },
 });

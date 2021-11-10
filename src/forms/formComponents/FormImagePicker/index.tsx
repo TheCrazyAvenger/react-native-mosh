@@ -1,7 +1,7 @@
 import {useFormikContext} from 'formik';
 import React from 'react';
-import {FormImagePickerProps} from '..';
-import {ImageInputList} from '../../components';
+import {FormImagePickerProps} from '../..';
+import {ImageInputList} from '../../../components';
 
 export const FormImagePicker: React.FC<FormImagePickerProps> = ({name}) => {
   const {setFieldValue, values}: any = useFormikContext();

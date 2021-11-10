@@ -10,10 +10,12 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-community/geolocation": "^2.0.2",
     "formik": "^2.2.9",
     "react": "17.0.2",
     "react-native": "0.66.2",
     "react-native-image-crop-picker": "^0.36.4",
+    "react-native-paper": "^4.10.0",
     "react-native-vector-icons": "^9.0.0",
     "yup": "^0.32.11"
   },
