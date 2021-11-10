@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {Text, Modal, TouchableOpacity, View} from 'react-native';
 import {Button} from 'react-native-paper';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {FormPickerProps} from '../..';
+import {H5} from '../../../components/Typography';
 import {colors} from '../../../config';
 import {styles} from './styles';
 
@@ -50,7 +52,7 @@ export const FormPicker: React.FC<FormPickerProps> = ({setCategoryValue}) => {
                   }}>
                   <Icon name={item.icon} size={40} color={colors.white} />
                 </View>
-                <Text style={styles.modalText}>{item.name}</Text>
+                <H5 style={styles.modalText}>{item.name}</H5>
               </TouchableOpacity>
             );
           })}

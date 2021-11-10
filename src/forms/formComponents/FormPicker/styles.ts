@@ -26,11 +26,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   modalText: {
-    fontFamily: 'Roboto-Medium',
-    fontSize: 15,
     maxWidth: '90%',
     textAlign: 'center',
-    color: colors.black,
     marginTop: 5,
   },
 });

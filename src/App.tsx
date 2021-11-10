@@ -1,18 +1,6 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {PostForm} from './forms';
+import {AppNavigator} from './navigation/AppNavigator';
 
 export const App: React.FC = () => {
-  return (
-    <View style={styles.container}>
-      <PostForm />
-    </View>
-  );
+  return <AppNavigator />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-  },
-});

@@ -23,8 +23,8 @@ export const ImageInput: React.FC<ImageInputProps> = ({uri, onChange}) => {
 
   const openGalery = () => {
     ImagePicker.openPicker({
-      width: 100,
-      height: 100,
+      width: 400,
+      height: 200,
       cropping: true,
     })
       .then(image => {

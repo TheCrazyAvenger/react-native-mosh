@@ -1,8 +1,9 @@
 export const colors = {
   pink: '#FC505A',
-  light: '#F7F2F1',
+  light: '#dedede',
   gray: 'gray',
   red: 'red',
   white: 'white',
   black: '#313131',
+  tomato: 'tomato',
 };

@@ -1,6 +1,5 @@
 import {Formik} from 'formik';
 import React from 'react';
-import {Text} from 'react-native';
 import {Button} from 'react-native-paper';
 import {
   ErrorMessage,
@@ -26,7 +25,7 @@ export const PostForm: React.FC = () => {
         images: [],
         category: '',
       }}
-      onSubmit={values => console.log(location)}>
+      onSubmit={values => console.log(values, location)}>
       {({
         handleSubmit,
         setFieldTouched,
