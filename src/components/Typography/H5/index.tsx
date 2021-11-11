@@ -1,5 +1,4 @@
 import React from 'react';
-import {Image, View} from 'react-native';
 import {Text} from 'react-native-paper';
 import {H4Type} from '..';
 import {styles} from './styles';

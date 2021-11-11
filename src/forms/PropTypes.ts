@@ -13,6 +13,7 @@ export type FormInputProps = {
   style?: any;
   onChange: any;
   onBlur: any;
+  icon?: string;
 };
 
 export type FormPickerProps = {

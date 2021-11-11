@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     maxWidth: '50%',
     flexDirection: 'row',
-    backgroundColor: colors.light,
+    backgroundColor: colors.lightGray,
     height: 60,
     borderRadius: 50,
     marginTop: 15,

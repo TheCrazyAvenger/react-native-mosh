@@ -13,15 +13,15 @@ export const FormPicker: React.FC<FormPickerProps> = ({setCategoryValue}) => {
   const [category, setCategory] = useState('Category');
 
   const categories = [
-    {name: 'Furniture', icon: 'floor-lamp', color: '#FD525B'},
-    {name: 'Cars', icon: 'car', color: '#FD8B3A'},
-    {name: 'Cameras', icon: 'camera', color: '#FECD29'},
-    {name: 'Games', icon: 'cards', color: '#21DA76'},
-    {name: 'Clothing', icon: 'hanger', color: '#25C4B2'},
-    {name: 'Sports', icon: 'basketball', color: '#3CA0EF'},
-    {name: 'Movies & Music', icon: 'music-note', color: '#436FE9'},
-    {name: 'Books', icon: 'book', color: '#9D53E8'},
-    {name: 'Other', icon: 'window-maximize', color: '#6C8099'},
+    {name: 'Furniture', icon: 'floor-lamp', color: '#FD525B', value: 1},
+    {name: 'Cars', icon: 'car', color: '#FD8B3A', value: 2},
+    {name: 'Cameras', icon: 'camera', color: '#FECD29', value: 3},
+    {name: 'Games', icon: 'cards', color: '#21DA76', value: 4},
+    {name: 'Clothing', icon: 'hanger', color: '#25C4B2', value: 5},
+    {name: 'Sports', icon: 'basketball', color: '#3CA0EF', value: 6},
+    {name: 'Movies & Music', icon: 'music-note', color: '#436FE9', value: 7},
+    {name: 'Books', icon: 'book', color: '#9D53E8', value: 8},
+    {name: 'Other', icon: 'window-maximize', color: '#6C8099', value: 9},
   ];
 
   return (
@@ -41,7 +41,7 @@ export const FormPicker: React.FC<FormPickerProps> = ({setCategoryValue}) => {
                 style={{alignItems: 'center', margin: 15}}
                 activeOpacity={0.7}
                 onPress={() => {
-                  setCategoryValue(item.name);
+                  setCategoryValue(item.value);
                   setVisible(false);
                   setCategory(item.name);
                 }}>

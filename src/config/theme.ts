@@ -5,7 +5,7 @@ export const theme: any = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-
     primary: colors.pink,
+    background: colors.white,
   },
 };

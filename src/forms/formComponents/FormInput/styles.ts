@@ -2,11 +2,18 @@ import {StyleSheet} from 'react-native';
 import {colors} from '../../../config';
 
 export const styles = StyleSheet.create({
-  textInput: {
-    backgroundColor: colors.light,
-    height: 60,
-    borderRadius: 50,
+  container: {
+    flexDirection: 'row',
+    height: 55,
     marginTop: 15,
+    backgroundColor: colors.lightGray,
+    borderRadius: 50,
+    alignItems: 'center',
+  },
+  icon: {paddingLeft: 20},
+  textInput: {
+    flex: 1,
+    height: '100%',
     paddingHorizontal: 20,
   },
 });

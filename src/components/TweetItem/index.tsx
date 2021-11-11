@@ -1,11 +1,12 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
+import {TweetItemProps} from '..';
 import {Screens} from '../../config';
 import {H5} from '../Typography';
 import {styles} from './styles';
 
-export const TweetItem: React.FC = () => {
+export const TweetItem: React.FC<TweetItemProps> = ({title, price, uri}) => {
   const navigation: any = useNavigation();
 
   return (
@@ -15,13 +16,13 @@ export const TweetItem: React.FC = () => {
       style={styles.tweetItem}>
       <Image
         source={{
-          uri: 'file:///storage/emulated/0/Android/data/com.rnmosh/files/Pictures/20e27925-34b2-460d-901d-e33e53206be7.jpg',
+          uri,
         }}
         style={{width: '100%', height: 200}}
       />
       <View style={styles.tweetItemInfo}>
-        <H5>Couch in great condition</H5>
-        <H5 style={{color: '#19F3BD', marginTop: 10}}>$100</H5>
+        <H5>{title}</H5>
+        <H5 style={{color: '#19F3BD', marginTop: 10}}>{price}</H5>
       </View>
     </TouchableOpacity>
   );

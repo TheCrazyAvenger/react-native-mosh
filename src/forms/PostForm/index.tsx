@@ -1,6 +1,6 @@
 import {Formik} from 'formik';
 import React from 'react';
-import {Button} from 'react-native-paper';
+import {Alert} from 'react-native';
 import {
   ErrorMessage,
   FormImagePicker,
@@ -8,12 +8,21 @@ import {
   FormPicker,
   postSchema,
 } from '..';
+import listingsApi from '../../api/tweets';
 import {colors} from '../../config';
 import {useGeolocation} from '../../hooks';
-import {styles} from './styles';
+import {TextButton} from '../../ui';
 
 export const PostForm: React.FC = () => {
   const location = useGeolocation();
+
+  const handleSubmit = async (listing: any) => {
+    const result = await listingsApi.addListing({...listing, location});
+    if (!result.ok) {
+      return Alert.alert('Could not save the listing.');
+    }
+    Alert.alert('Success');
+  };
 
   return (
     <Formik
@@ -25,7 +34,7 @@ export const PostForm: React.FC = () => {
         images: [],
         category: '',
       }}
-      onSubmit={values => console.log(values, location)}>
+      onSubmit={handleSubmit}>
       {({
         handleSubmit,
         setFieldTouched,
@@ -87,14 +96,11 @@ export const PostForm: React.FC = () => {
               errorMessage={errors.description}
             />
 
-            <Button
-              mode="contained"
+            <TextButton
+              title="Post"
+              color={colors.pink}
               onPress={handleSubmit}
-              contentStyle={{height: 50, backgroundColor: colors.pink}}
-              labelStyle={styles.submitLabel}
-              style={styles.submitButton}>
-              Post
-            </Button>
+            />
           </>
         );
       }}
