@@ -9,11 +9,11 @@ export const useApi = (apiFunc: any) => {
     setLoading(true);
     const response: any = await apiFunc(...args);
     setLoading(false);
-    if (!response.ok) {
-      return setError(true);
-    }
-    setError(false);
+
+    setError(!response.ok);
     setData(response.data);
+
+    return response;
   };
 
   return {

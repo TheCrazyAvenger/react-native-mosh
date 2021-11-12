@@ -1,17 +1,17 @@
 import {Formik} from 'formik';
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import authApi from '../../api/auth';
-import authStorage from '../../auth/storage';
 import {ErrorMessage, FormInput, loginSchema} from '..';
 import {colors} from '../../config';
-import {TextButton} from '../../ui';
-import jwtDecode from 'jwt-decode';
-import {AuthContext} from '../../auth/context';
-import EncryptedStorage from 'react-native-encrypted-storage';
+import {Screen, TextButton} from '../../ui';
+
+import {useApi, useAuth} from '../../hooks';
+import {ActivityIndicator} from '../../components';
 
 export const LoginForm: React.FC = () => {
-  const authContext: any = useContext(AuthContext);
-  const [loginFailed, setLoginFailed] = useState(false);
+  const loginApi = useApi(authApi.login);
+  const {logIn}: any = useAuth();
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async ({
     email,
@@ -20,13 +20,14 @@ export const LoginForm: React.FC = () => {
     email: string;
     password: string;
   }) => {
-    const result: any = await authApi.login(email, password);
-    if (!result.ok) return setLoginFailed(true);
+    const result: any = await loginApi.request(email, password);
+    if (!result.ok) {
+      setError('Invalid email and/or password');
+      return;
+    }
 
-    setLoginFailed(false);
-    const user = jwtDecode(result.data);
-    authContext.setUser(user);
-    authStorage.storeToken(result.data);
+    setError(null);
+    logIn(result.data);
   };
 
   return (
@@ -46,11 +47,8 @@ export const LoginForm: React.FC = () => {
         values,
       }) => {
         return (
-          <>
-            <ErrorMessage
-              errorMessage="Invalid email and/or password"
-              isTouched={loginFailed}
-            />
+          <Screen style={{padding: 0}}>
+            <ErrorMessage errorMessage={error} isTouched={loginApi.error} />
             <FormInput
               placeholder="Email"
               onChange={handleChange('email')}
@@ -80,7 +78,8 @@ export const LoginForm: React.FC = () => {
               color={colors.pink}
               onPress={handleSubmit}
             />
-          </>
+            <ActivityIndicator visible={loginApi.loading} />
+          </Screen>
         );
       }}
     </Formik>

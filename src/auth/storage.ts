@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode';
 import EncryptedStorage from 'react-native-encrypted-storage';
 
 const key = 'authToken';
@@ -27,8 +28,14 @@ const removeToken = async () => {
   }
 };
 
+const getUser = async () => {
+  const token = await getToken();
+  return token ? jwtDecode(token) : null;
+};
+
 export default {
   storeToken,
+  getUser,
   getToken,
   removeToken,
 };

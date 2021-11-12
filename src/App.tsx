@@ -4,7 +4,7 @@ import {AppNavigator} from './navigation/AppNavigator';
 import {CacheManager} from '@georstat/react-native-image-cache';
 import {Dirs} from 'react-native-file-access';
 import {AuthContext} from './auth/context';
-import jwtDecode from 'jwt-decode';
+import SplashScreen from 'react-native-splash-screen';
 
 export const App: React.FC = () => {
   const [user, setUser] = useState();
@@ -16,14 +16,14 @@ export const App: React.FC = () => {
     thumbnailAnimationDuration: 1000,
   };
 
-  const restoreToken = async () => {
-    const token = await authStorage.getToken();
-    if (!token) return;
-    setUser(jwtDecode(token));
+  const restoreUser = async () => {
+    const user: any = await authStorage.getUser();
+    if (user) setUser(user);
   };
 
   useEffect(() => {
-    restoreToken();
+    restoreUser();
+    SplashScreen.hide();
   }, []);
 
   return (

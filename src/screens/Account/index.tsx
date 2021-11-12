@@ -1,18 +1,12 @@
-import React, {useContext} from 'react';
-import authStorage from '../../auth/storage';
-import {AuthContext} from '../../auth/context';
+import React from 'react';
 import {AccountItem, AccountPanel} from '../../components';
 import {colors} from '../../config';
 import {Screen} from '../../ui';
 import {styles} from './styles';
+import {useAuth} from '../../hooks';
 
 export const Account: React.FC = () => {
-  const {user, setUser}: any = useContext(AuthContext);
-
-  const handleLogout = () => {
-    setUser(null);
-    authStorage.removeToken();
-  };
+  const {user, logOut}: any = useAuth();
 
   return (
     <Screen style={styles.container}>
@@ -39,7 +33,7 @@ export const Account: React.FC = () => {
         title="Log out"
         icon="logout"
         iconColor={colors.yellow}
-        onPress={handleLogout}
+        onPress={logOut}
         style={{marginTop: 20}}
       />
     </Screen>
