@@ -6,3 +6,6 @@ export * from './Welcome';
 export * from './Login';
 export * from './Register';
 export * from './Account';
+export * from './UploadScreen';
+
+export * from './PropTypes';

@@ -1,24 +1,39 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
+import {CachedImage} from '@georstat/react-native-image-cache';
 import {TweetItemProps} from '..';
 import {Screens} from '../../config';
 import {H5} from '../Typography';
 import {styles} from './styles';
 
-export const TweetItem: React.FC<TweetItemProps> = ({title, price, uri}) => {
+export const TweetItem: React.FC<TweetItemProps> = ({
+  title,
+  price,
+  uri,
+  thumbnailUrl,
+}) => {
   const navigation: any = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate(Screens.tweet, {
+      title,
+      price,
+      uri,
+      thumbnailUrl,
+    });
+  };
 
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={() => navigation.navigate(Screens.tweet)}
+      onPress={handlePress}
       style={styles.tweetItem}>
-      <Image
-        source={{
-          uri,
-        }}
+      <CachedImage
+        source={uri}
         style={{width: '100%', height: 200}}
+        resizeMode="cover"
+        thumbnailSource={thumbnailUrl}
       />
       <View style={styles.tweetItemInfo}>
         <H5>{title}</H5>

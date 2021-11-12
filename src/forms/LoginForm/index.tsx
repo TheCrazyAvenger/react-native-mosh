@@ -1,10 +1,34 @@
 import {Formik} from 'formik';
-import React from 'react';
+import React, {useContext, useState} from 'react';
+import authApi from '../../api/auth';
+import authStorage from '../../auth/storage';
 import {ErrorMessage, FormInput, loginSchema} from '..';
 import {colors} from '../../config';
 import {TextButton} from '../../ui';
+import jwtDecode from 'jwt-decode';
+import {AuthContext} from '../../auth/context';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 export const LoginForm: React.FC = () => {
+  const authContext: any = useContext(AuthContext);
+  const [loginFailed, setLoginFailed] = useState(false);
+
+  const handleSubmit = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    const result: any = await authApi.login(email, password);
+    if (!result.ok) return setLoginFailed(true);
+
+    setLoginFailed(false);
+    const user = jwtDecode(result.data);
+    authContext.setUser(user);
+    authStorage.storeToken(result.data);
+  };
+
   return (
     <Formik
       validationSchema={loginSchema}
@@ -12,7 +36,7 @@ export const LoginForm: React.FC = () => {
         email: '',
         password: '',
       }}
-      onSubmit={values => console.log(values)}>
+      onSubmit={handleSubmit}>
       {({
         handleSubmit,
         setFieldTouched,
@@ -23,6 +47,10 @@ export const LoginForm: React.FC = () => {
       }) => {
         return (
           <>
+            <ErrorMessage
+              errorMessage="Invalid email and/or password"
+              isTouched={loginFailed}
+            />
             <FormInput
               placeholder="Email"
               onChange={handleChange('email')}

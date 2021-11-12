@@ -10,11 +10,11 @@ export const postSchema = yup.object().shape({
 
 export const loginSchema = yup.object().shape({
   email: yup.string().email().required().min(1).label('Email'),
-  password: yup.string().required().min(8).max(16).label('Password'),
+  password: yup.string().required().min(5).max(16).label('Password'),
 });
 
 export const registerSchema = yup.object().shape({
   name: yup.string().required().min(1).max(12).label('Name'),
   email: yup.string().email().required().min(1).label('Email'),
-  password: yup.string().required().min(8).max(16).label('Password'),
+  password: yup.string().required().min(5).max(16).label('Password'),
 });

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import listingsApi from '../../api/tweets';
 import {FlatList} from 'react-native';
-import {TweetItem, ActivityIndicator} from '../../components';
+import {TweetItem, ActivityIndicator, OfflineNotice} from '../../components';
 import {Screen, TextButton} from '../../ui';
 import {styles} from './styles';
 import {H3} from '../../components/Typography';
@@ -21,25 +21,30 @@ export const Feed: React.FC = () => {
   }, []);
 
   return (
-    <Screen type="View" style={styles.container}>
-      {error && (
-        <>
-          <H3>Couldn't retrieve the listing.</H3>
-          <TextButton title="Retry" color={colors.red} onPress={loadTweets} />
-        </>
-      )}
-      <ActivityIndicator visible={loading} />
-      <FlatList
-        data={tweets}
-        keyExtractor={(listing: any) => listing.id.toString()}
-        renderItem={({item}) => (
-          <TweetItem
-            title={item.title}
-            price={`$ ${item.price}`}
-            uri={item.images[0].url}
-          />
+    <>
+      <OfflineNotice />
+      <Screen type="View" style={styles.container}>
+        {error && (
+          <>
+            <H3>Couldn't retrieve the listing.</H3>
+            <TextButton title="Retry" color={colors.red} onPress={loadTweets} />
+          </>
         )}
-      />
-    </Screen>
+        <ActivityIndicator visible={loading} />
+        <FlatList
+          data={tweets}
+          keyExtractor={(listing: any) => listing.id.toString()}
+          renderItem={({item}) => (
+            <TweetItem
+              title={item.title}
+              price={`$ ${item.price}`}
+              uri={item.images[0].url}
+              thumbnailUrl={item.images[0].thumbnailUrl}
+            />
+          )}
+          showsVerticalScrollIndicator={false}
+        />
+      </Screen>
+    </>
   );
 };

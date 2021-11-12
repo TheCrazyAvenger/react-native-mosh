@@ -8,9 +8,12 @@ import {H5} from '../../../components/Typography';
 import {colors} from '../../../config';
 import {styles} from './styles';
 
-export const FormPicker: React.FC<FormPickerProps> = ({setCategoryValue}) => {
+export const FormPicker: React.FC<FormPickerProps> = ({
+  setCategoryValue,
+  value,
+}) => {
   const [visible, setVisible] = useState(false);
-  const [category, setCategory] = useState('Category');
+  const [category, setCategory] = useState('');
 
   const categories = [
     {name: 'Furniture', icon: 'floor-lamp', color: '#FD525B', value: 1},
@@ -62,9 +65,8 @@ export const FormPicker: React.FC<FormPickerProps> = ({setCategoryValue}) => {
         activeOpacity={0.7}
         onPress={() => setVisible(true)}
         style={styles.formPicker}>
-        <Text
-          style={{color: category !== 'Category' ? colors.black : colors.gray}}>
-          {category}
+        <Text style={{color: value !== '' ? colors.black : colors.gray}}>
+          {value === '' ? 'Category' : category}
         </Text>
         <Icon name="chevron-down" size={18} />
       </TouchableOpacity>

@@ -7,6 +7,7 @@ export type TweetItemProps = {
   title: string;
   price: string;
   uri: string;
+  thumbnailUrl: string;
 };
 
 export type ImageInputListProps = {
@@ -17,6 +18,8 @@ export type ImageInputListProps = {
 
 export type AccountPanelProps = {
   style?: any;
+  name: string;
+  email: string;
 };
 
 export type AccountItemProps = {

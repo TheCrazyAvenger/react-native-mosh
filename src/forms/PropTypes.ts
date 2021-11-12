@@ -18,4 +18,5 @@ export type FormInputProps = {
 
 export type FormPickerProps = {
   setCategoryValue: any;
+  value: string;
 };
